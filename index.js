@@ -1,11 +1,63 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const manager = [];
+const managerArr = [];
+const engineerArr = [];
+const internArr = [];
 
+
+//these questions are about the engineer
+const engQuestions = [
+    {
+        type: "input",
+        message: "What is the engineer's name",
+        name: "engName",
+    },
+    {
+        type: "input",
+        message: "What is the engineer's ID",
+        name: "engID",
+    },
+    {
+        type: "input",
+        message: "What is the engineer's email",
+        name: "engEmail",
+    },
+    {
+        type: "input",
+        message: "What is the engineer's Github username?",
+        name: "engGithub",
+    },
+]
+
+//these questions are about the intern
+const intQuestions = [
+    {
+        type: "input",
+        message: "What is the intern's name",
+        name: "intName",
+    },
+    {
+        type: "input",
+        message: "What is the interns's ID",
+        name: "intID",
+    },
+    {
+        type: "input",
+        message: "What is the interns's email",
+        name: "intEmail",
+    },
+    {
+        type: "input",
+        message: "Where does the Intern go to school?",
+        name: "intSchool",
+    },
+]
+
+
+//this inquirer asks the first mandatory questions about the manager
 inquirer
   .prompt([
     {
@@ -36,6 +88,39 @@ inquirer
       ans.managerEmail,
       ans.managerNumber
     );
-    manager.push(newManager);
-    console.log(manager)
+    managerArr.push(newManager);
+    console.log(managerArr);
+    const questions = () => {
+        inquirer.prompt([
+            {
+               type: "list",
+               message: "What would you like to do?",
+               choices: ["Add an Engineer","Add an Intern","Quit"],
+               name: "initial" 
+            }
+        ])
+        .then((ans) => {
+            if (ans.initial==="Add an Engineer") {
+                inquirer.prompt(engQuestions)
+                .then (ans => {
+                    const newEngineer = new Engineer(ans.engName, ans.engID, ans.engEmail, ans.engGithub)
+                    engineerArr.push(newEngineer)
+                    console.log(engineerArr)
+                    questions();
+                })
+            } else if (ans.initial==="Add an Intern") {
+                inquirer.prompt(intQuestions)
+                .then (ans => {
+                    const newIntern = new Intern(ans.intName, ans.intID, ans.intEmail, ans.intSchool)
+                    internArr.push(newIntern)
+                    console.log(internArr)
+                    questions();
+                })
+            } else {
+                // fs.writeFile('index.html',generateHTML.js,)
+            }
+        })
+    } ;
+    questions();
   });
+
