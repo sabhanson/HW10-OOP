@@ -4,7 +4,6 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const internal = require("stream");
 const managerArr = [];
 const engineerArr = [];
 const internArr = [];
