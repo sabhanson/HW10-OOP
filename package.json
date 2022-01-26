@@ -1,0 +1,30 @@
+{
+  "name": "hw10-oop",
+  "version": "1.0.0",
+  "description": "# 10 Object-Oriented Programming: Team Profile Generator",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabhanson/HW10-OOP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabhanson/HW10-OOP/issues"
+  },
+  "homepage": "https://github.com/sabhanson/HW10-OOP#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
