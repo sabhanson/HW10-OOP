@@ -1,12 +1,13 @@
 const inquirer = require("inquirer");
+const team = require('./util/generateHtml')
 const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const internal = require("stream");
 const managerArr = [];
 const engineerArr = [];
 const internArr = [];
-
 
 //these questions are about the engineer
 const engQuestions = [
@@ -117,7 +118,10 @@ inquirer
                     questions();
                 })
             } else {
-                // fs.writeFile('index.html',generateHTML.js,)
+                const teamArr = [...managerArr, ...engineerArr, ...internArr]
+                fs.writeFile('index.html',team(teamArr),(err) =>
+                    err ? console.log(err) : console.log("success")
+                )
             }
         })
     } ;
