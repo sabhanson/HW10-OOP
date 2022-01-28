@@ -12,11 +12,11 @@ I created this application to generate an HTML file of a professional team using
 - [Questions](#questions)
 
 ## Installation
-To install this README generator, the user will need to create a clone of this repository and open it in VSCode. The user will need to have npm installed to be able to run this application in the built-in terminal.  
+To install this Team Generator Application, the user will need to create a clone of this repository and open it in VSCode. The user will need to have npm installed to be able to run this application in the built-in terminal.  
 
 [For more information on installing npm](https://docs.npmjs.com/cli/v8/commands/npm-install)  
 
-The user will need to right-click on the index.js file and select "open in integrated terminal". Then run the command "npm i inquirer" to install the inquirer package. After that, run the command "node index.js" to start generating a README. 
+The user will need to right-click on the index.js file and select "open in integrated terminal". Then run the command "npm i inquirer" to install the inquirer package. After that, run the command "node index.js" to start generating a team with the application. 
 
 ## Usage
 The user will need to follow the Installation instructions above. Then they will be prompted with their first questions regarding the Manager. Once the user has answered all questions about the Manager, they will be prompted to choose one of the following: "Add an Engineer", "Add an Intern", or "I'm done building my team. Quit application". If the user selects "Add an Engineer", they will answer specific questions that pertain to an Engineer's position. If the user selects "Add an Intern", they will answer specific questions that pertain to the Intern's position. If the user selects to add an engineer or intern, they will continue to be asked to add more team members until they select "I'm done building my team. Quit application". Once that option is selected, the user will be finished with the application and the HTML will be generated in the 'dist' folder under the name 'index.html'. Be mindful that each time this application is run, the previous data saved in 'index.html' will be overwritten. To save any data from versions of this file, copy and save to somewhere other than this folder. I have provided a link to a YouTube video demoing the application usage, and the HTML file that is generated.  
@@ -51,6 +51,7 @@ To contribute, please contact me.
 
 ## Tests
 Tested in VSCode terminal for errors and proper usage.
+Also tested using Jest.
 
 ## Questions
 To contact me, use one of the links below:  
