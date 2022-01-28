@@ -27,6 +27,8 @@ The user will need to follow the Installation instructions above.
 - If the user selects to add an engineer or intern, they will continue to be asked to add more team members until they select "I'm done building my team. Quit application".
 - Once that option is selected, the user will be finished with the application and the HTML will be generated in the 'dist' folder under the name 'index.html'. Be mindful that each time this application is run, the previous data saved in 'index.html' will be overwritten. To save any data from versions of this file, copy and save to somewhere other than this folder.  
 
+![Example HTML that is generated with this app](demo.png)
+
 I have provided a link to a YouTube video demoing the application usage, and the HTML file that is generated.  
 
 [Youtube Video of Team Generator Application Usage, and Demo](https://youtu.be/OfmjLIGupDM)
