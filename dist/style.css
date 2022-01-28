@@ -1,0 +1,32 @@
+body {
+    /* background-color: seagreen; */
+    background: radial-gradient(lightseagreen, greenyellow, darkseagreen);
+}
+
+.jumbotron {
+    background: radial-gradient(darkseagreen, greenyellow, lightseagreen);
+}
+
+.text-center {
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row wrap;
+}
+
+.employee-card {
+    margin: 1rem;
+    border-radius: 20px;
+
+}
+
+.card-title {
+    color: seagreen;
+}
+
+.list-group-item {
+    color: darkseagreen;
+}

@@ -1,8 +1,8 @@
-//inquirer is so we can use the prompts
+//inquirer is required to use prompts
 const inquirer = require("inquirer");
-//team is so we can use the generateHTML js file
+//team is required to access the HTML formatting
 const team = require('./util/generateHtml')
-//fs is required to be able to write the file at the end
+//fs is required to use writeFile 
 const fs = require("fs");
 //manager, engineer, intern are required to use the classes to construct new ones based on user input
 const Manager = require("./lib/Manager");
@@ -13,7 +13,7 @@ const managerArr = [];
 const engineerArr = [];
 const internArr = [];
 
-//these questions are about the engineer
+//the following prompts are for the engineer specifically... these are accessed once the initial manager prompts have been asked
 const engQuestions = [
     {
         type: "input",
@@ -24,7 +24,7 @@ const engQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid name")
+                console.log("\n Please enter a valid name, for example: Roy Munson")
                 return false;
             }
         }    
@@ -38,7 +38,7 @@ const engQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid ID")
+                console.log("\n Please enter a valid ID, for example: 1d444Az")
                 return false;
             }
         }
@@ -52,7 +52,7 @@ const engQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid email")
+                console.log("\n Please enter a valid email, for example: email@email.com")
                 return false;
             }
         }
@@ -66,14 +66,14 @@ const engQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid name")
+                console.log("\n Please enter a valid Github username, for example: bestuserever")
                 return false;
             }
         }
     },
 ]
 
-//these questions are about the intern
+//the following prompts are for the intern specifically... these are accessed once the initial manager prompts have been asked
 const intQuestions = [
     {
         type: "input",
@@ -84,7 +84,7 @@ const intQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid name")
+                console.log("\n Please enter a valid name, for example: Roy Munson")
                 return false;
             }
         }  
@@ -98,7 +98,7 @@ const intQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid ID")
+                console.log("\n Please enter a valid ID, for example: 1d444Az")
                 return false;
             }
         }
@@ -113,7 +113,7 @@ const intQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid email")
+                console.log("\n Please enter a valid email, for example: email@email.com")
                 return false;
             }
         }
@@ -127,7 +127,7 @@ const intQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log("\n Please enter a valid school name")
+                console.log("\n Please enter a valid school name, for example: ABC University")
                 return false;
             }
         }  
@@ -135,7 +135,7 @@ const intQuestions = [
 ]
 
 
-//this inquirer asks the first mandatory questions about the manager
+//this following prompts are for the manager specifically...these are the first questions accessed during the execution of the application
 inquirer
   .prompt([
     {
@@ -147,7 +147,7 @@ inquirer
         if (valid) {
             return true;
         } else {
-            console.log("\n Please enter a valid name")
+            console.log("\n Please enter a valid name, for example: Roy Munson")
             return false;
         }
     } 
@@ -161,7 +161,7 @@ inquirer
         if (valid) {
             return true;
         } else {
-            console.log("\n Please enter a valid ID")
+            console.log("\n Please enter a valid ID, for example: 1d444Az")
             return false;
         }
     }
@@ -175,7 +175,7 @@ inquirer
           if (valid) {
               return true;
           } else {
-              console.log("\n Please enter a valid email")
+              console.log("\n Please enter a valid email, for example: email@email.com")
               return false;
           }
       }
@@ -189,51 +189,52 @@ inquirer
         if (valid) {
             return true;
         } else {
-            console.log("\n Please enter a valid name")
+            console.log("\n Please enter a valid phone number, for example: 111-111-1111")
             return false;
         }
     } 
     },
   ])
-  //then from the prompt answers, this data is pushed into the manager array to be used later in the generated HTML doc
+  //the data from the manager prompts is pushed into the manager array to be used later in the generated HTML doc
   .then((ans) => {
-    //manager class (from manager.js) with the data we want to use for the parameters
+    //manager class (from manager.js) is used to construct a new manager object with the manager prompt data
     const newManager = new Manager(
       ans.managerName,
       ans.managerID,
       ans.managerEmail,
       ans.managerNumber
     );
+    //the newManager variable is pushed to the manager array
     managerArr.push(newManager);
-    //next question here, prompts user to add engineer or intern or quit
+    //this function buildTeam prompts the user to add engineer or intern or quit
     const buildTeam = () => {
         inquirer.prompt([
             {
                type: "list",
                message: "What would you like to do?",
                choices: ["Add an Engineer","Add an Intern","I'm done building my team. Quit application"],
-               name: "initial" 
+               name: "addOrQuit" 
             }
         ])
-        //then with the input from the prompt above, do something from this if else statement
+        //then based on the answer to the prompt, there are 3 different possibilites in the if else statements below
         .then((ans) => {
-            //if they choose to add an engineer, a new engineer will be built from the class Engineer that we created in Engineer.js, it will be pushed into the engineer array and the user will be prompted with the question again
-            if (ans.initial==="Add an Engineer") {
+            //if the user selects to add an engineer, a new engineer will be built from the class Engineer that was created in Engineer.js, it will be pushed into the engineer array and the user will be prompted with the buildTeam function again
+            if (ans.addOrQuit==="Add an Engineer") {
                 inquirer.prompt(engQuestions)
                 .then (ans => {
                     const newEngineer = new Engineer(ans.engName, ans.engID, ans.engEmail, ans.engGithub)
                     engineerArr.push(newEngineer)
                     buildTeam();
                 })
-            //if they choose to add an intern, a new intern will be built from the class Intern that we created in Intern.js, it will be pushed into the intern array and the user will be prompted with the questions again    
-            } else if (ans.initial==="Add an Intern") {
+            //if the user selects to add an intern, a new intern will be built from the class Intern that was created in Intern.js, it will be pushed into the intern array and the user will be prompted with the buildTeam function again 
+            } else if (ans.addOrQuit==="Add an Intern") {
                 inquirer.prompt(intQuestions)
                 .then (ans => {
                     const newIntern = new Intern(ans.intName, ans.intID, ans.intEmail, ans.intSchool)
                     internArr.push(newIntern)
                     buildTeam();
                 })
-            //if they choose to quit, the manager array, engineer array, and intern array will all be compiled into one array (team array) that will then be used to write the index.html file
+            //if the user selects to quit, the manager array, engineer array, and intern array will all be compiled into one array (team array) that will then be used to write the index.html file
             } else {
                 const teamArr = [...managerArr, ...engineerArr, ...internArr]
                 fs.writeFile('./dist/index.html',team(teamArr),(err) =>
@@ -242,6 +243,7 @@ inquirer
             }
         })
     } ;
+    //call buildTeam function to initiate prompt for Engineer/Intern/Quit Application
     buildTeam();
   });
 
