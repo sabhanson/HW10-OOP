@@ -1,32 +1,42 @@
 body {
-    /* background-color: seagreen; */
-    background: radial-gradient(lightseagreen, greenyellow, darkseagreen);
+    background-color: skyblue;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 .jumbotron {
-    background: radial-gradient(darkseagreen, greenyellow, lightseagreen);
+    background: linear-gradient(0deg, darkorchid,fuchsia, darkorchid);
+    height: 100%;
 }
 
 .text-center {
     color: white;
+    font-weight: 400;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    flex-direction: row wrap;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card-header {
+    background-color: orchid;
 }
 
 .employee-card {
     margin: 1rem;
-    border-radius: 20px;
-
+    width: 17rem;
 }
 
 .card-title {
-    color: seagreen;
+    color: white;
+    text-align: center;
 }
 
 .list-group-item {
-    color: darkseagreen;
+    color: darkorchid;
 }
